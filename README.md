@@ -106,8 +106,8 @@ _index.js_
     >npm start
       > apigennodehack@1.0.0 start F:\projects\go\ApiGenNodeHack
       > node index.js
-
-## Node
-This was tested with the Node.js versions 10.18.1 and 12.14.1. The code may contain some Javascript statements that don't work in earlier versions of node, such as arrow functions and object destructering.
       200
       Hello In Go !
+
+## Node
+This was tested with the Node.js versions 10.18.1 and 12.14.1. The code may contain some Javascript statements that don't work in earlier versions of node, such as arrow functions and object destructuring.
