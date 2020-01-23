@@ -10,9 +10,12 @@ the Lambda function. Javascript you say? Can't I use the Javascript API it gener
 Well, no. Not right off at least. You see, the Javascript client SDK AWS generates assumes it will run
 in a browser, not Node. So as is you can't just add it to your Node app.
 
+There are a couple of solutions to this problem in Github (search: AWS generated javascript apiGateway in Node) which are
+probably better than this approach but for fast and dirty usage this is enough.
+
 Here are some of the problems:
 
-- the files it generates are intended to be added using \<script\> elements. They are not built as normal Node modules you can just **require**
+- the files the AWS Javascript API generator produces are intended to be used in \<script\> elements in a browser. They are not built as normal Node modules you can just _require_
 - a bit of the code it generates uses browser resources that won't work in Node without a lot of fiddling.
 - see the src/apiGateway-js-sdk/README.md in this repo for the usage instructions it generates. You'll see it is all about the browser.
 
@@ -40,7 +43,7 @@ This hack assumes you have some prior knowledge of the following:
 5. Create a node.js skeleton app in a directory of your choice
    - you probably want to use 'npm init' for this
 6. Create a 'src' directory in your node app.
-7. Unzip the downloaded API SDK into the 'src' directory
+7. Unzip or untar the downloaded API SDK into the 'src' directory. It will add a directory named something like _apiGateway-js-sdk_ which contains the files produced by the AWS API SDK generator.
 
 ## The Hack
 
@@ -59,6 +62,8 @@ Gotchas that needed to be fixed. There were only two:
 
 - as mentioned above, the axios standalone file did not work, so instead just require axios in 'prefix.js' and that seems to be enough for that.
 - the sigV4Client.js files assumes it is running in a browser and it creates and uses an anchor element to parse a URL and extract the hostname. That is fixed by adding a simple dummy document object in 'prefix.js' that handles what the sgiV4Client.js file wants. It is exported in _suffix.js_ so it is accessible in the
+
+You might need to modify the _include.sh or include.cmd_ file if your application uses other AWS API features. The generator may add more or fewer files depending on what you use. If it does, just recreate the _include_ script using this one as a pattern. You can cd into the apiGate-js-sdk directory, do a _find -name \*.js_ to get a list of the files that you can patch into the \*include\* script. **Hey, I told you this was a hack**.
 
 ## Usage
 
