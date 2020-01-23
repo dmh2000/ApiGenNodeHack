@@ -1,0 +1,27 @@
+{
+  "name": "apigennodehack",
+  "version": "1.0.0",
+  "description": "a nasty hack to use an AWS api javascrit client gen sdk in node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmh2000/ApiGenNodeHack.git"
+  },
+  "keywords": [
+    "aws",
+    "apigClientFactory"
+  ],
+  "author": "david howard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmh2000/ApiGenNodeHack/issues"
+  },
+  "homepage": "https://github.com/dmh2000/ApiGenNodeHack#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
